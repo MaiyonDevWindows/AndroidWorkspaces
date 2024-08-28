@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BasicCalc</string>
+    <string name="app_title">Xử lý phép tính đơn giản</string>
+    <string name="lb_first_num">Số thứ nhất:</string>
+    <string name="lb_sec_num">Số thứ hai:</string>
+    <string name="addBtn">Cộng</string>
+    <string name="subtractBtn">Trừ</string>
+    <string name="multiplyBtn">Nhân</string>
+    <string name="divideBtn">Chia</string>
+    <string name="lb_result">Kết quả:</string>
+</resources>
