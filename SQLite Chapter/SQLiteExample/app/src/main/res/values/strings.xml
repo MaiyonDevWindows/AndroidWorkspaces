@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">SQLiteExample</string>
+    <string name="lbAddButton">Thêm</string>
+    <string name="lbEditButton">Sửa</string>
+    <string name="lbDelButton">Xoá</string>
+    <string name="lbDisplayButton">Hiển thị</string>
+</resources>
