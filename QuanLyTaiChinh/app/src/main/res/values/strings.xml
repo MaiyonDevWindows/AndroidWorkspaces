@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">QuanLyTaiChinh</string>
+    <string name="lbBtnSignUp">Đăng ký tài khoản mới</string>
+    <string name="lbBtnSignIn">Đăng nhập</string>
+    <string name="txtWelcome">Chào mừng đến với\n Maiyon MoneyKeeper\n Trải nghiệm niềm vui quản lý tài chính\n bằng việc đăng ký trong lần đầu sử dụng</string>
+</resources>

@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MusicApplication</string>
+    <string name="lbBtnAddMusic">Thêm bài hát</string>
+    <string name="lbBtnExitProgram">Thoát chương trình</string>
+</resources>
