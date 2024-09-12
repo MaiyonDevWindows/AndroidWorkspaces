@@ -3,4 +3,18 @@
     <string name="lbBtnSignUp">Đăng ký tài khoản mới</string>
     <string name="lbBtnSignIn">Đăng nhập</string>
     <string name="txtWelcome">Chào mừng đến với\n Maiyon MoneyKeeper\n Trải nghiệm niềm vui quản lý tài chính\n bằng việc đăng ký trong lần đầu sử dụng</string>
+    <string-array name="mounth">
+        <item> Tháng 1</item>
+        <item> Tháng 2</item>
+        <item> Tháng 3</item>
+        <item> Tháng 4</item>
+        <item> Tháng 5</item>
+        <item> Tháng 6</item>
+        <item> Tháng 7</item>
+        <item> Tháng 8</item>
+        <item> Tháng 8</item>
+        <item> Tháng 10</item>
+        <item> Tháng 11</item>
+        <item> Tháng 12</item>
+    </string-array>
 </resources>

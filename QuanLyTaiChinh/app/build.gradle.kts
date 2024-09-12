@@ -32,12 +32,26 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.material)
     implementation(libs.activity)
     implementation(libs.constraintlayout)
+    implementation(libs.swiperefreshlayout)
+    implementation(libs.flexbox)
+    implementation(libs.room.common)
+    implementation(libs.room.runtime)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    implementation(libs.lottie)
+
+    implementation(libs.fragment)
+    implementation(libs.appcompat.v161)
+    implementation(libs.material.calendar.view)
+    implementation("com.github.AnyChart:AnyChart-Android:1.1.5")
+    implementation(libs.mpandroidchart)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    annotationProcessor(libs.room.compiler)
 }
