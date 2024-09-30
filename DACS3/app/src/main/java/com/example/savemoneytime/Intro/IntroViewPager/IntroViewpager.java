@@ -6,7 +6,6 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -46,15 +45,12 @@ public class IntroViewpager extends AppCompatActivity {
         });
 
         //xử lý sự kiện nút, chuyển sangIntro khác hoặc là chuyển vào phần chính
-        buttonOnboardingAction.setOnClickListener( new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                if(onboardingViewpager.getCurrentItem()+1 < onboardingAdapter.getItemCount()){
-                    onboardingViewpager.setCurrentItem(onboardingViewpager.getCurrentItem()+1);
-                }else{
-                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                    finish();
-                }
+        buttonOnboardingAction.setOnClickListener(view -> {
+            if(onboardingViewpager.getCurrentItem()+1 < onboardingAdapter.getItemCount()){
+                onboardingViewpager.setCurrentItem(onboardingViewpager.getCurrentItem()+1);
+            }else{
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                finish();
             }
         });
 

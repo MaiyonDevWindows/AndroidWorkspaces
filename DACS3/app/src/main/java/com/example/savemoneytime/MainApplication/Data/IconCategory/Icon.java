@@ -1,4 +1,4 @@
-package com.example.savemoneytime.MainApplication.Data.IconCatelogy;
+package com.example.savemoneytime.MainApplication.Data.IconCategory;
 
 public class Icon {
     private String titleIcon;

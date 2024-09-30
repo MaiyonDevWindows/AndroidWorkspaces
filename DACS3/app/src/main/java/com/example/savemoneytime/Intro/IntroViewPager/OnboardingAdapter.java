@@ -5,18 +5,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.airbnb.lottie.LottieAnimationView;
 import com.example.savemoneytime.R;
-
 import java.util.List;
 
 public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.OnboardingViewHolder> {
 
-    private List<OnboardingItem> onboardingItems;
+    private final List<OnboardingItem> onboardingItems;
 
     public OnboardingAdapter(List<OnboardingItem> onboardingItems) {
         this.onboardingItems = onboardingItems;
@@ -42,10 +38,10 @@ public class OnboardingAdapter extends RecyclerView.Adapter<OnboardingAdapter.On
         return onboardingItems.size();
     }
 
-    class OnboardingViewHolder extends RecyclerView.ViewHolder{
-        private TextView textTitle;
-        private TextView textScripts;
-        private ImageView image;
+    static class OnboardingViewHolder extends RecyclerView.ViewHolder{
+        private final TextView textTitle;
+        private final TextView textScripts;
+        private final ImageView image;
         public OnboardingViewHolder(@NonNull View itemView) {
             super(itemView);
             textTitle = itemView.findViewById(R.id.textTitle);

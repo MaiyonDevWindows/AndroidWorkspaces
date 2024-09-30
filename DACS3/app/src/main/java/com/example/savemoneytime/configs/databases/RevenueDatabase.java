@@ -1,16 +1,16 @@
-package com.example.savemoneytime.database.RevenueDB;
+package com.example.savemoneytime.configs.databases;
 
 import android.content.Context;
 
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-
 import com.example.savemoneytime.MainApplication.Models.ActionUserRevenueModel;
-import com.example.savemoneytime.MainApplication.Models.CatelogyRevenueModel;
-import com.example.savemoneytime.database.CategoryRevenueDAO;
-import com.example.savemoneytime.database.SaveDatabase;
-@Database(entities = {CatelogyRevenueModel.class, ActionUserRevenueModel.class}, version = 2, exportSchema = true)
+import com.example.savemoneytime.MainApplication.Models.CategoryRevenueModel;
+import com.example.savemoneytime.database.IActionUserRevenueDAO;
+import com.example.savemoneytime.database.ICategoryRevenueDAO;
+
+@Database(entities = {CategoryRevenueModel.class, ActionUserRevenueModel.class}, version = 2)
 public abstract class RevenueDatabase extends RoomDatabase {
     private static final String DATABASE_NAME="revenue1.db";
     private static RevenueDatabase instance;
@@ -22,6 +22,6 @@ public abstract class RevenueDatabase extends RoomDatabase {
         }
         return instance;
     }
-    public abstract CategoryRevenueDAO categoryRevenueDAO();
-    public abstract ActionUserRevenueDao actionUserRevenueDao();
+    public abstract ICategoryRevenueDAO categoryRevenueDAO();
+    public abstract IActionUserRevenueDAO actionUserRevenueDao();
 }

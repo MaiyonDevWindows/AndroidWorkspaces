@@ -2,7 +2,7 @@
     <string name="app_name">SaveMoneyTime</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string-array name="mounth">
+    <string-array name="month">
         <item> Tháng 1</item>
         <item> Tháng 2</item>
         <item> Tháng 3</item>
@@ -11,10 +11,9 @@
         <item> Tháng 6</item>
         <item> Tháng 7</item>
         <item> Tháng 8</item>
-        <item> Tháng 8</item>
+        <item> Tháng 9</item>
         <item> Tháng 10</item>
         <item> Tháng 11</item>
         <item> Tháng 12</item>
-
     </string-array>
 </resources>

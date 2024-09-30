@@ -7,24 +7,22 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.savemoneytime.Interface.IclickAction;
+import com.example.savemoneytime.MainApplication.Models.CategoryModel;
+import com.example.savemoneytime.utils.IClickAction;
 import com.example.savemoneytime.MainApplication.Models.ActionUserModel;
-import com.example.savemoneytime.MainApplication.Models.CatelogyModel;
 import com.example.savemoneytime.R;
-import com.example.savemoneytime.database.SaveDatabase;
+import com.example.savemoneytime.configs.databases.SaveDatabase;
 
 import java.util.List;
 
 public class ListExpensesAdapter extends RecyclerView.Adapter<ListExpensesAdapter.ListExpensesViewHolder> {
-    private List<ActionUserModel> l_actionuser;
-    private IclickAction iclickAction;
+    private final List<ActionUserModel> l_actionuser;
+    private final IClickAction iclickAction;
     private Context context;
 
-    public ListExpensesAdapter(List<ActionUserModel> l_actionuser, IclickAction iclickAction) {
+    public ListExpensesAdapter(List<ActionUserModel> l_actionuser, IClickAction iclickAction) {
         this.iclickAction=iclickAction;
         this.l_actionuser = l_actionuser;
     }
@@ -33,7 +31,7 @@ public class ListExpensesAdapter extends RecyclerView.Adapter<ListExpensesAdapte
     @Override
     public ListExpensesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_list_expenses, parent,false);
-        return new ListExpensesAdapter.ListExpensesViewHolder(view);
+        return new ListExpensesViewHolder(view);
     }
 
     @Override
@@ -42,22 +40,17 @@ public class ListExpensesAdapter extends RecyclerView.Adapter<ListExpensesAdapte
         if(actionUserModel==null){
             return;
         }
-         List<CatelogyModel>l_category;
+         List<CategoryModel>l_category;
         //gọi lại từ thằng dababase để lấy ảnh ra
         l_category = SaveDatabase.getInstance(context).categoryDAO().getListByIdCategory(actionUserModel.getIdCategory());
 
-        CatelogyModel catelogyModel = l_category.get(0);
-        holder.imgAction.setImageResource(catelogyModel.getSourceImgCatelogy());
+        CategoryModel categoryModel = l_category.get(0);
+        holder.imgAction.setImageResource(categoryModel.getSourceImgCategory());
 
         holder.titleExpenses.setText(actionUserModel.getTitleAction());
         holder.ExpensesText.setText(actionUserModel.getPaymentAction());
         holder.dateText.setText(String.valueOf(actionUserModel.getDateTimeAction()));
-        holder.del_action_user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iclickAction.onClickItemAction(actionUserModel);
-            }
-        });
+        holder.del_action_user.setOnClickListener(view -> iclickAction.onClickItemAction(actionUserModel));
     }
 
     @Override
@@ -65,12 +58,12 @@ public class ListExpensesAdapter extends RecyclerView.Adapter<ListExpensesAdapte
         return l_actionuser.size();
     }
 
-    public class ListExpensesViewHolder extends RecyclerView.ViewHolder{
-        private ImageView imgAction;
-        private TextView titleExpenses;
-        private TextView ExpensesText;
-        private TextView dateText;
-        private ImageButton del_action_user;
+    public static class ListExpensesViewHolder extends RecyclerView.ViewHolder{
+        private final ImageView imgAction;
+        private final TextView titleExpenses;
+        private final TextView ExpensesText;
+        private final TextView dateText;
+        private final ImageButton del_action_user;
         public ListExpensesViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAction = itemView.findViewById(R.id.img_expenses);

@@ -7,13 +7,12 @@
     android:orientation="vertical"
     android:layout_margin="16dp">
     <TextView
-
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="12dp"
-        android:text="Thêm Doanh Mục"
+        android:text="Thêm Danh Mục"
         android:textColor="@color/black"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:gravity="center"
         android:background="@drawable/bg_yellow_coner_16_top_left"/>
     <LinearLayout
@@ -26,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="14dp"
+            android:textSize="14sp"
             android:text="Vui Lòng Nhập Đầy Đủ Thông Tin"/>
         <TextView
             android:textColor="#EA0000"
@@ -39,7 +38,7 @@
             android:id="@+id/edt_title_category"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Nhập tên doanh mục"
+            android:hint="Nhập tên danh mục"
             android:padding="12dp"/>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -87,14 +86,14 @@
         app:justifyContent="space_evenly"
         android:orientation="horizontal">
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/bt_cancel_dialog_add_catelogy"
+            android:id="@+id/bt_cancel_dialog_add_category"
             android:backgroundTint="#AE3636"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cornerRadius="10dp"
             android:text="Huỷ"/>
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/save_catelogy"
+            android:id="@+id/save_category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/yellow"

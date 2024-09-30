@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 3,
-    "identityHash": "c82a60bdeff8e81c6ac463e8cfc2b720",
+    "version": 2,
+    "identityHash": "d6a587be224ad0272f4a5e082ec159a3",
     "entities": [
       {
         "tableName": "category",
@@ -81,12 +81,12 @@
         "foreignKeys": []
       },
       {
-        "tableName": "usersetting",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `weekless` INTEGER NOT NULL, `normal` INTEGER NOT NULL, `caution` INTEGER NOT NULL)",
+        "tableName": "settinguser",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idSetting` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `weekless` INTEGER NOT NULL, `normal` INTEGER NOT NULL, `strong` INTEGER NOT NULL)",
         "fields": [
           {
-            "fieldPath": "id",
-            "columnName": "id",
+            "fieldPath": "idSetting",
+            "columnName": "idSetting",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -103,15 +103,15 @@
             "notNull": true
           },
           {
-            "fieldPath": "caution",
-            "columnName": "caution",
+            "fieldPath": "strong",
+            "columnName": "strong",
             "affinity": "INTEGER",
             "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "id"
+            "idSetting"
           ],
           "autoGenerate": true
         },
@@ -122,7 +122,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'c82a60bdeff8e81c6ac463e8cfc2b720')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'd6a587be224ad0272f4a5e082ec159a3')"
     ]
   }
 }

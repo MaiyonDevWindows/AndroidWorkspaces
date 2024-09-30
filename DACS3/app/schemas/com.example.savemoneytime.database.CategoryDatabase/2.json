@@ -6,7 +6,7 @@
     "entities": [
       {
         "tableName": "category",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCategory` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sourceImgCatelogy` INTEGER NOT NULL, `titleCatelogy` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`idCategory` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `sourceImgCategory` INTEGER NOT NULL, `titleCategory` TEXT)",
         "fields": [
           {
             "fieldPath": "idCategory",
@@ -15,14 +15,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "sourceImgCatelogy",
-            "columnName": "sourceImgCatelogy",
+            "fieldPath": "sourceImgCategory",
+            "columnName": "sourceImgCategory",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "titleCatelogy",
-            "columnName": "titleCatelogy",
+            "fieldPath": "titleCategory",
+            "columnName": "titleCategory",
             "affinity": "TEXT",
             "notNull": false
           }

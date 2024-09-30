@@ -23,12 +23,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.savemoneytime.Interface.IclickAction;
+import com.example.savemoneytime.utils.IClickAction;
 import com.example.savemoneytime.MainApplication.Adapters.ListExpensesAdapter;
 import com.example.savemoneytime.MainApplication.Models.ActionUserModel;
 import com.example.savemoneytime.MainApplication.Models.Setting;
 import com.example.savemoneytime.R;
-import com.example.savemoneytime.database.SaveDatabase;
+import com.example.savemoneytime.configs.databases.SaveDatabase;
 import com.google.android.material.button.MaterialButton;
 import com.applandeo.materialcalendarview.CalendarView;
 import com.applandeo.materialcalendarview.EventDay;
@@ -37,17 +37,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     View myview;
     RecyclerView rcl_contain_list_expenses;
-    private ListExpensesAdapter listExpensesAdapter;
-    private List<ActionUserModel> LactionUserModels;
-    private CalendarView calendarView;
-    private TextView tv_lv1, tv_lv2, tv_lv3;
-    private ImageButton bt_setting_user;
     private EditText edt_weekless, edt_normal, edt_strong;
-    private MaterialButton save_setting_user;
     private SwipeRefreshLayout reload_list_action;
     private List<Setting> L_setting;
 
@@ -71,7 +66,7 @@ public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout
         reload_list_action.setOnRefreshListener(this);
 
         // Calendar setup using applandeo material calendar view
-        calendarView = myview.findViewById(R.id.custom_calender);
+        CalendarView calendarView = myview.findViewById(R.id.custom_calender);
 
         // Fetching action data
         List<ActionUserModel> actions = SaveDatabase.getInstance(getContext()).actionUserDao().getListAction();
@@ -85,7 +80,7 @@ public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout
         }
 
         // Button for settings
-        bt_setting_user = myview.findViewById(R.id.bt_setting_user);
+        ImageButton bt_setting_user = myview.findViewById(R.id.bt_setting_user);
         bt_setting_user.setOnClickListener(view -> OpenDialog(Gravity.BOTTOM));
 
         return myview;
@@ -93,7 +88,8 @@ public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout
 
     // Setting up the adapter with data from the database
     public void SetUpAdapter() {
-        listExpensesAdapter = new ListExpensesAdapter(addListActionFromDatabase(LactionUserModels), new IclickAction() {
+        // Delete action by id
+        ListExpensesAdapter listExpensesAdapter = new ListExpensesAdapter(addListActionFromDatabase(), new IClickAction() {
             @SuppressLint("ResourceAsColor")
             @Override
             public void onClickItemAction(ActionUserModel actionUserModel) {
@@ -120,7 +116,7 @@ public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout
 
     // Handling settings dialog
     public void OpenDialog(int gravity) {
-        final Dialog dialog = new Dialog(getActivity());
+        final Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()));
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_setting_user);
 
@@ -138,11 +134,11 @@ public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout
             edt_normal = dialog.findViewById(R.id.edt_normal);
             edt_strong = dialog.findViewById(R.id.edt_strong);
 
-            tv_lv1 = dialog.findViewById(R.id.tv_lv1);
-            tv_lv2 = dialog.findViewById(R.id.tv_lv2);
-            tv_lv3 = dialog.findViewById(R.id.tv_lv3);
+            TextView tv_lv1 = dialog.findViewById(R.id.tv_lv1);
+            TextView tv_lv2 = dialog.findViewById(R.id.tv_lv2);
+            TextView tv_lv3 = dialog.findViewById(R.id.tv_lv3);
 
-            save_setting_user = dialog.findViewById(R.id.save_setting_user);
+            MaterialButton save_setting_user = dialog.findViewById(R.id.save_setting_user);
 
             L_setting = SaveDatabase.getInstance(getContext()).aSettingUserDAO().getsetting();
             if (!L_setting.isEmpty()) {
@@ -184,9 +180,8 @@ public class ListExpensesFragment extends Fragment implements SwipeRefreshLayout
     }
 
     // Fetch list from the database
-    public List<ActionUserModel> addListActionFromDatabase(List<ActionUserModel> LactionUserModels) {
-        LactionUserModels = SaveDatabase.getInstance(getContext()).actionUserDao().getListAction();
-        return LactionUserModels;
+    public List<ActionUserModel> addListActionFromDatabase() {
+        return SaveDatabase.getInstance(getContext()).actionUserDao().getListAction();
     }
 
     // On item click

@@ -11,24 +11,20 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.savemoneytime.Interface.IclickAction;
-import com.example.savemoneytime.Interface.IclickRevenueAction;
-import com.example.savemoneytime.MainApplication.Models.ActionUserModel;
+import com.example.savemoneytime.MainApplication.Models.CategoryRevenueModel;
+import com.example.savemoneytime.utils.IClickRevenueAction;
 import com.example.savemoneytime.MainApplication.Models.ActionUserRevenueModel;
-import com.example.savemoneytime.MainApplication.Models.CatelogyModel;
-import com.example.savemoneytime.MainApplication.Models.CatelogyRevenueModel;
 import com.example.savemoneytime.R;
-import com.example.savemoneytime.database.RevenueDB.RevenueDatabase;
-import com.example.savemoneytime.database.SaveDatabase;
+import com.example.savemoneytime.configs.databases.RevenueDatabase;
 
 import java.util.List;
 
 public class ListRevenueAdapter extends RecyclerView.Adapter<ListRevenueAdapter.ListExpensesViewHolder> {
-    private List<ActionUserRevenueModel> l_actionuser;
-    private IclickRevenueAction iclickAction;
+    private final List<ActionUserRevenueModel> l_actionuser;
+    private final IClickRevenueAction iclickAction;
     private Context context;
 
-    public ListRevenueAdapter(List<ActionUserRevenueModel> l_actionuser, IclickRevenueAction iclickAction) {
+    public ListRevenueAdapter(List<ActionUserRevenueModel> l_actionuser, IClickRevenueAction iclickAction) {
         this.iclickAction=iclickAction;
         this.l_actionuser = l_actionuser;
     }
@@ -37,7 +33,7 @@ public class ListRevenueAdapter extends RecyclerView.Adapter<ListRevenueAdapter.
     @Override
     public ListExpensesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_container_list_revenue, parent,false);
-        return new ListRevenueAdapter.ListExpensesViewHolder(view);
+        return new ListExpensesViewHolder(view);
     }
 
     @Override
@@ -46,22 +42,15 @@ public class ListRevenueAdapter extends RecyclerView.Adapter<ListRevenueAdapter.
         if(actionUserModel==null){
             return;
         }
-         List<CatelogyRevenueModel>l_category;
+         List<CategoryRevenueModel>l_category;
         //gọi lại từ thằng dababase để lấy ảnh ra
         l_category = RevenueDatabase.getInstance(context).categoryRevenueDAO().getListByIdCategoryRevenue(actionUserModel.getIdCategory());
-
-        CatelogyRevenueModel catelogyModel = l_category.get(0);
-        holder.imgAction.setImageResource(catelogyModel.getSourceImgCatelogy());
-
+        CategoryRevenueModel categoryModel = l_category.get(0);
+        holder.imgAction.setImageResource(categoryModel.getSourceImgCategory());
         holder.titleExpenses.setText(actionUserModel.getTitleAction());
         holder.ExpensesText.setText(actionUserModel.getPaymentAction());
         holder.dateText.setText(String.valueOf(actionUserModel.getDateTimeAction()));
-        holder.del_action_user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                iclickAction.onClickItemAction(actionUserModel);
-            }
-        });
+        holder.del_action_user.setOnClickListener(view -> iclickAction.onClickItemAction(actionUserModel));
     }
 
     @Override
@@ -69,12 +58,12 @@ public class ListRevenueAdapter extends RecyclerView.Adapter<ListRevenueAdapter.
         return l_actionuser.size();
     }
 
-    public class ListExpensesViewHolder extends RecyclerView.ViewHolder{
-        private ImageView imgAction;
-        private TextView titleExpenses;
-        private TextView ExpensesText;
-        private TextView dateText;
-        private ImageButton del_action_user;
+    public static class ListExpensesViewHolder extends RecyclerView.ViewHolder{
+        private final ImageView imgAction;
+        private final TextView titleExpenses;
+        private final TextView ExpensesText;
+        private final TextView dateText;
+        private final ImageButton del_action_user;
         public ListExpensesViewHolder(@NonNull View itemView) {
             super(itemView);
             imgAction = itemView.findViewById(R.id.img_expenses);
@@ -82,7 +71,6 @@ public class ListRevenueAdapter extends RecyclerView.Adapter<ListRevenueAdapter.
             ExpensesText = itemView.findViewById(R.id.expenses_text);
             dateText = itemView.findViewById(R.id.date);
             del_action_user = itemView.findViewById(R.id.del_action_user);
-
         }
     }
 }

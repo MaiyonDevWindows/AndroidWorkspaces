@@ -1,7 +1,7 @@
-package com.example.savemoneytime.Interface;
+package com.example.savemoneytime.utils;
 
 import com.example.savemoneytime.MainApplication.Models.ActionUserModel;
 
-public interface IclickAction {
+public interface IClickAction {
     void onClickItemAction(ActionUserModel actionUserModel);
 }

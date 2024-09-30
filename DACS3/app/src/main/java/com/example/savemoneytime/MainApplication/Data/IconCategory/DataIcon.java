@@ -1,4 +1,4 @@
-package com.example.savemoneytime.MainApplication.Data.IconCatelogy;
+package com.example.savemoneytime.MainApplication.Data.IconCategory;
 
 import com.example.savemoneytime.R;
 
